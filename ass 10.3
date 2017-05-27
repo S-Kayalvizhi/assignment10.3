@@ -1,0 +1,13 @@
+1.Fetch date and temperature from temperature_data where zip code is greater than 300000 and less than 399999.
+
+SELECT date,temperature from temperature_data where zip_code>300000 AND zip_code<399999;
+
+2.Calculate maximum temperature corresponding to every year from temperature_data table.
+
+SELECT YEAR(FROM_UNIXTIME(UNIX_TIMESTAMP(date,'dd-mm-yyyy'))) as date, MAX(temperature) as max_temp FROM temperature_data GROUP BY
+YEAR(FROM_UNIXTIME(UNIX_TIMESTAMP(date,'dd-mm-yyyy')));
+
+3.Calculate maximum temperature from temperature_data table corresponding to those years which have at least 2 entries in the table.
+
+SELECT YEAR(FROM_UNIXTIME(UNIX_TIMESTAMP(date,'dd-mm-yyyy'))) as date, MAX(temperature) as max_temp FROM temperature_data GROUP BY
+YEAR(FROM_UNIXTIME(UNIX_TIMESTAMP(date,'dd-mm-yyyy'))) HAVING COUNT(date)>=2;
